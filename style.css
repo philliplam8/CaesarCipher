@@ -1,0 +1,31 @@
+html {
+    font-family: 'Roboto Mono', monospace;
+    font-family: 'Rubik', sans-serif;
+    height: 100%;
+}
+
+.conversion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.encrypt {
+    flex-grow: 1;
+}
+
+.decrypt {
+    flex-grow: 1;
+}
+
+textarea {
+    background: none;
+    font-size: 2rem;
+    resize: none;
+    padding: 0;
+    height: 200px;
+    width: 100%;
+    outline: none;
+    border: none;
+    /* overflow: hidden; */
+}
