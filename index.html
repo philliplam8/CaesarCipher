@@ -18,19 +18,23 @@
 </head>
 
 <body>
-
-    <p>This is a Caesar Cipher shifted to the right by 1</p>
+    <p>[Work in progress] This is a Caesar Cipher shifted to the right by 1. Only encryption works at the moment :)</p>
 
     <div class="conversion">
-        <div class="encrypt">
+        <div class="input-text">
             <h1>Plain Text</h1>
             <textarea autofocus id="plaintext" placeholder="Enter text"></textarea>
         </div>
 
-        <div class="decrypt">
+        <div class="output-text">
             <h1>Cipher Text</h1>
-            <textarea id="ciphertext" placeholder="Encryption"></textarea>
+            <div class="tooltip">
+                <span class="tooltiptext">Copy</span>
+            </div>
+            <textarea id="ciphertext" placeholder="Encryption" readonly></textarea>
         </div>
+
+
     </div>
 </body>
 

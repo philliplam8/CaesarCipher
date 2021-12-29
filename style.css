@@ -10,12 +10,16 @@ html {
     justify-content: space-around;
 }
 
-.encrypt {
+.input-text {
     flex-grow: 1;
 }
 
-.decrypt {
+.output-text {
     flex-grow: 1;
+}
+
+.output-text textarea {
+    background-color: #cecece;
 }
 
 textarea {
@@ -28,4 +32,46 @@ textarea {
     outline: none;
     border: none;
     /* overflow: hidden; */
+}
+
+/* Tooltip */
+.tooltip .tooltiptext {
+    visibility: visible;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+
+    /* Position the tooltip */
+    position: relative;
+    top: -5px;
+    z-index: 1;
+
+    /* Fade In Animation */
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.output-text:hover .tooltiptext {
+    visibility: visible;
+
+    /* Fade In Animation */
+    opacity: 1;
+}
+
+/* Tooltip Arrow */
+.output-text .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+
+    /* Fade In Animation */
+    opacity: 1;
 }

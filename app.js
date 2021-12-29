@@ -1,5 +1,6 @@
 const plainTextField = document.getElementById("plaintext");
 const cipherTextField = document.getElementById("ciphertext");
+const tooltip = document.getElementsByClassName("tooltiptext")[0];
 
 /* Cipher Dictionaries
 Keeping O(1) complexity at the cost of slightly more memory */
@@ -86,7 +87,7 @@ function encyption(shiftDirection, plainText, shift) {
 
             // Check if character is an alphabetical character
             if (isAlphabetical(plainText[i])) {
-                
+
                 // Convert alphabetical letter to uppercase
                 let plainTextUpperCase = plainText[i].toUpperCase();
                 // console.log("plainText ", plainTextUpperCase);
@@ -115,6 +116,7 @@ function encyption(shiftDirection, plainText, shift) {
     return cipherText;
 }
 
+// Update Cipher Text Output
 function update() {
     let plainText = plainTextField.value;
     let newValue = encyption("right", plainText, 1)
@@ -122,3 +124,13 @@ function update() {
 }
 
 plainTextField.addEventListener("input", update);
+
+// Copy output text to clipboard
+cipherTextField.addEventListener("click", function () {
+    navigator.clipboard.writeText(cipherTextField.value);
+    tooltip.innerText = "Copied!";
+});
+
+cipherTextField.addEventListener("mouseout", function() {
+    tooltip.innerText = "Copy";
+})
