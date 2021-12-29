@@ -22,14 +22,27 @@
 
     <div class="conversion">
         <div class="input-text">
-            <h1>Plain Text</h1>
+            <div class="header-row">
+                <h1>Plain Text</h1>
+                <div class="copy">
+                    <img src="copy-regular.svg" alt="copy-icon" class="copy-icon">
+                    <div class="tooltip">
+                        <span class="tooltiptext">Copy</span>
+                    </div>
+                </div>
+            </div>
             <textarea autofocus id="plaintext" placeholder="Enter text"></textarea>
         </div>
 
         <div class="output-text">
-            <h1>Cipher Text</h1>
-            <div class="tooltip">
-                <span class="tooltiptext">Copy</span>
+            <div class="header-row">
+                <h1>Cipher Text</h1>
+                <div class="copy">
+                    <img src="copy-regular.svg" alt="copy-icon" class="copy-icon">
+                    <div class="tooltip">
+                        <span class="tooltiptext">Copy</span>
+                    </div>
+                </div>
             </div>
             <textarea id="ciphertext" placeholder="Encryption" readonly></textarea>
         </div>

@@ -1,6 +1,9 @@
+const copyInputButton = document.querySelector(".input-text .header-row .copy");
+const copyOutputButton = document.querySelector(".output-text .header-row .copy");
+const tooltips = document.getElementsByClassName("tooltiptext");
 const plainTextField = document.getElementById("plaintext");
 const cipherTextField = document.getElementById("ciphertext");
-const tooltip = document.getElementsByClassName("tooltiptext")[0];
+
 
 /* Cipher Dictionaries
 Keeping O(1) complexity at the cost of slightly more memory */
@@ -125,12 +128,26 @@ function update() {
 
 plainTextField.addEventListener("input", update);
 
-// Copy output text to clipboard
-cipherTextField.addEventListener("click", function () {
-    navigator.clipboard.writeText(cipherTextField.value);
-    tooltip.innerText = "Copied!";
+// Copy input text to clipboard
+copyInputButton.addEventListener("click", function () {
+    navigator.clipboard.writeText(plainTextField.value);
+    tooltips[0].innerText = "Copied!";
+    tooltips[0].style.left = "-13px"; // compensate tooltip arrow position from text change above
 });
 
-cipherTextField.addEventListener("mouseout", function() {
-    tooltip.innerText = "Copy";
+copyInputButton.addEventListener("mouseout", function() {
+    tooltips[0].innerText = "Copy";
+    tooltips[0].style.left = "-4px"; // compensate tooltip arrow position from text change above
+})
+
+// Copy output text to clipboard
+copyOutputButton.addEventListener("click", function () {
+    navigator.clipboard.writeText(cipherTextField.value);
+    tooltips[1].innerText = "Copied!";
+    tooltips[1].style.left = "-13px"; // compensate tooltip arrow position from text change above
+});
+
+copyOutputButton.addEventListener("mouseout", function() {
+    tooltips[1].innerText = "Copy";
+    tooltips[1].style.left = "-4px"; // compensate tooltip arrow position from text change above
 })

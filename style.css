@@ -19,7 +19,16 @@ html {
 }
 
 .output-text textarea {
-    background-color: #cecece;
+    background-color: #e7e7e7;
+}
+
+.header-row {
+    display: flex;
+}
+
+.copy-icon {
+    margin: 0 10px;
+    width: 1.5rem;
 }
 
 textarea {
@@ -30,13 +39,22 @@ textarea {
     height: 200px;
     width: 100%;
     outline: none;
-    border: none;
+    border: solid 1px #cecece;
     /* overflow: hidden; */
 }
 
+/* Copy Button */
+.copy {
+    display: flex;
+}
+
 /* Tooltip */
+.tooltip  {
+    position: absolute;
+}
+
 .tooltip .tooltiptext {
-    visibility: visible;
+    visibility: hidden;
     width: 120px;
     background-color: black;
     color: #fff;
@@ -46,15 +64,15 @@ textarea {
 
     /* Position the tooltip */
     position: relative;
-    top: -5px;
-    z-index: 1;
+    bottom: 5px;
+    left: -4px;
 
     /* Fade In Animation */
     opacity: 0;
-    transition: opacity 0.25s;
+    transition: opacity 0.2s;
 }
 
-.output-text:hover .tooltiptext {
+.copy:hover .tooltiptext {
     visibility: visible;
 
     /* Fade In Animation */
@@ -62,7 +80,7 @@ textarea {
 }
 
 /* Tooltip Arrow */
-.output-text .tooltiptext::after {
+.tooltip .tooltiptext::after {
     content: "";
     position: absolute;
     top: 100%;
