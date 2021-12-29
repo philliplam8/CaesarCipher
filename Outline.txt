@@ -1,6 +1,0 @@
-1. Input phrase (or just have fixed phrase)
-2. Convert letters into numbers
-3. Determine encryption/decryption
-4. Determine right shift/left shift
-5. Perform encryption/decryption
-6. Convert numbers into letters

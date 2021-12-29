@@ -10,37 +10,8 @@ html {
     justify-content: space-around;
 }
 
-.input-text {
-    flex-grow: 1;
-}
-
-.output-text {
-    flex-grow: 1;
-}
-
-.output-text textarea {
-    background-color: #e7e7e7;
-}
-
 .header-row {
     display: flex;
-}
-
-.copy-icon {
-    margin: 0 10px;
-    width: 1.5rem;
-}
-
-textarea {
-    background: none;
-    font-size: 2rem;
-    resize: none;
-    padding: 0;
-    height: 200px;
-    width: 100%;
-    outline: none;
-    border: solid 1px #cecece;
-    /* overflow: hidden; */
 }
 
 /* Copy Button */
@@ -48,8 +19,14 @@ textarea {
     display: flex;
 }
 
+.copy-icon {
+    margin: 0 10px;
+    width: 1.5rem;
+    opacity: 0.5;
+}
+
 /* Tooltip */
-.tooltip  {
+.tooltip {
     position: absolute;
 }
 
@@ -92,4 +69,29 @@ textarea {
 
     /* Fade In Animation */
     opacity: 1;
+}
+
+/* Input Section */
+.input-text {
+    flex-grow: 1;
+}
+
+/* Output Section */
+.output-text {
+    flex-grow: 1;
+}
+
+.output-text textarea {
+    background-color: #e7e7e7;
+}
+
+textarea {
+    background: none;
+    font-size: 2rem;
+    resize: none;
+    padding: 10px;
+    height: 200px;
+    width: 90%;
+    outline: none;
+    border: solid 1px #cecece;
 }
