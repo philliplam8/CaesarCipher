@@ -71,9 +71,35 @@ html {
     opacity: 1;
 }
 
+.text-row {
+    /* border: solid 1px #cecece; */
+    margin-right: 10px;
+    display: flex;
+}
+
+textarea {
+    background: none;
+    font-size: 2rem;
+    overflow: hidden;
+    resize: none;
+    padding: 10px;
+    min-height: 200px;
+    width: 90%;
+    outline: none;
+    /* border: solid 1px #cecece; */
+    border: none;
+}
+
 /* Input Section */
 .input-text {
     flex-grow: 1;
+}
+
+.clear-text-icon {
+    visibility: hidden;
+    margin: 0 10px;
+    width: 1.5rem;
+    opacity: 0.5;
 }
 
 /* Output Section */
@@ -81,17 +107,6 @@ html {
     flex-grow: 1;
 }
 
-.output-text textarea {
+.output-text .text-row {
     background-color: #e7e7e7;
-}
-
-textarea {
-    background: none;
-    font-size: 2rem;
-    resize: none;
-    padding: 10px;
-    height: 200px;
-    width: 90%;
-    outline: none;
-    border: solid 1px #cecece;
 }

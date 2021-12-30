@@ -1,9 +1,12 @@
+/* ----------------------------- */
+/*          CONSTANTS            */
+/* ----------------------------- */
 const copyInputButton = document.querySelector(".input-text .header-row .copy");
 const copyOutputButton = document.querySelector(".output-text .header-row .copy");
 const tooltips = document.getElementsByClassName("tooltiptext");
+const clearButton = document.getElementsByClassName("clear-text-icon")[0];
 const plainTextField = document.getElementById("plaintext");
 const cipherTextField = document.getElementById("ciphertext");
-
 
 /* Cipher Dictionaries
 Keeping O(1) complexity at the cost of slightly more memory */
@@ -65,6 +68,51 @@ var decryptionDict = {
     25: "Z"
 }
 
+/* ----------------------------- */
+/*       CLIPBOARD SECTION       */
+/* ----------------------------- */
+// Copy input text to clipboard
+copyInputButton.addEventListener("click", function () {
+    navigator.clipboard.writeText(plainTextField.value);
+    tooltips[0].innerText = "Copied!";
+    tooltips[0].style.left = "-13px"; // compensate tooltip arrow position from text change above
+});
+
+copyInputButton.addEventListener("mouseout", function () {
+    tooltips[0].innerText = "Copy";
+    tooltips[0].style.left = "-4px"; // compensate tooltip arrow position from text change above
+})
+
+// Copy output text to clipboard
+copyOutputButton.addEventListener("click", function () {
+    navigator.clipboard.writeText(cipherTextField.value);
+    tooltips[1].innerText = "Copied!";
+    tooltips[1].style.left = "-13px"; // compensate tooltip arrow position from text change above
+});
+
+copyOutputButton.addEventListener("mouseout", function () {
+    tooltips[1].innerText = "Copy";
+    tooltips[1].style.left = "-4px"; // compensate tooltip arrow position from text change above
+})
+
+/* ----------------------------- */
+//        Display X button
+/* ----------------------------- */
+function hideClearButton() {
+    clearButton.style.visibility = "hidden";
+}
+
+function showClearButton() {
+    clearButton.style.visibility = "visible";
+}
+
+clearButton.addEventListener("click", function() {
+    hideClearButton();
+    plainTextField.value = "";
+    update();
+})
+
+/* ----------------------------- */
 // Function to Determine if Character is Alphabetical
 // if the lower case and uppercase are equal, it is not a letter
 function isAlphabetical(achar) {
@@ -80,7 +128,10 @@ function shiftLeft(numText, n) {
     return (numText - n) % 26;
 }
 
+
+/* ----------------------------- */
 // Wrapper Function
+/* ----------------------------- */
 function encyption(shiftDirection, plainText, shift) {
 
     let cipherText = "";
@@ -119,35 +170,30 @@ function encyption(shiftDirection, plainText, shift) {
     return cipherText;
 }
 
+/* ----------------------------- */
 // Update Cipher Text Output
+/* ----------------------------- */
 function update() {
     let plainText = plainTextField.value;
     let newValue = encyption("right", plainText, 1)
     cipherTextField.value = newValue;
+
+    // Show/hide X button
+    if (plainText == "") {
+        hideClearButton();
+    } else {
+        showClearButton();
+    }
 }
 
 plainTextField.addEventListener("input", update);
 
-// Copy input text to clipboard
-copyInputButton.addEventListener("click", function () {
-    navigator.clipboard.writeText(plainTextField.value);
-    tooltips[0].innerText = "Copied!";
-    tooltips[0].style.left = "-13px"; // compensate tooltip arrow position from text change above
-});
-
-copyInputButton.addEventListener("mouseout", function() {
-    tooltips[0].innerText = "Copy";
-    tooltips[0].style.left = "-4px"; // compensate tooltip arrow position from text change above
-})
-
-// Copy output text to clipboard
-copyOutputButton.addEventListener("click", function () {
-    navigator.clipboard.writeText(cipherTextField.value);
-    tooltips[1].innerText = "Copied!";
-    tooltips[1].style.left = "-13px"; // compensate tooltip arrow position from text change above
-});
-
-copyOutputButton.addEventListener("mouseout", function() {
-    tooltips[1].innerText = "Copy";
-    tooltips[1].style.left = "-4px"; // compensate tooltip arrow position from text change above
+/* ----------------------------- */
+// Auto-grow Textarea
+/* ----------------------------- */
+plainTextField.addEventListener("input", function () {
+    plainTextField.style.height = "auto";
+    cipherTextField.style.height = "auto";
+    plainTextField.style.height = (plainTextField.scrollHeight) + "px"
+    cipherTextField.style.height = (cipherTextField.scrollHeight) + "px";
 })
