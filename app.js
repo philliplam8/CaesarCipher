@@ -1,12 +1,19 @@
 /* ----------------------------- */
 /*          CONSTANTS            */
 /* ----------------------------- */
-const copyInputButton = document.querySelector(".input-text .header-row .copy");
-const copyOutputButton = document.querySelector(".output-text .header-row .copy");
+const switchButton = document.getElementById("switch-button");
+
+const copyInputButton = document.querySelector(".input-text .header-row .copy-section");
+const copyOutputButton = document.querySelector(".output-text .header-row .copy-section");
 const tooltips = document.getElementsByClassName("tooltiptext");
 const clearButton = document.getElementsByClassName("clear-text-icon")[0];
-const plainTextField = document.getElementById("plaintext");
-const cipherTextField = document.getElementById("ciphertext");
+
+const PLAIN_TEXT = "Plain Text";
+const CIPHER_TEXT = "Cipher Text";
+const ENCRYPTION_PLACEHOLDER_TEXT = "Encryption";
+const DECRYPTION_PLACEHOLDER_TEXT = "Decryption"
+const inputTextField = document.getElementById("inputtext");
+const outputTextField = document.getElementById("ouputtext");
 
 /* Cipher Dictionaries
 Keeping O(1) complexity at the cost of slightly more memory */
@@ -69,11 +76,39 @@ var decryptionDict = {
 }
 
 /* ----------------------------- */
+// Switch between Encryption/Decryption
+/* ----------------------------- */
+
+function switchHeaders() {
+    var inputTitle = document.getElementById("input-title").innerHTML;
+    var outputTitle = document.getElementById("output-title").innerHTML;
+
+    switch (inputTitle) {
+
+        // Swtich from Encryption -> Decryption
+        case (PLAIN_TEXT):
+            document.getElementById("input-title").innerHTML = CIPHER_TEXT;
+            document.getElementById("output-title").innerHTML = PLAIN_TEXT;
+            outputTextField.placeholder = DECRYPTION_PLACEHOLDER_TEXT;
+            break;
+
+        // Swtich from Decryption -> Encryption
+        case (CIPHER_TEXT):
+            document.getElementById("input-title").innerHTML = PLAIN_TEXT;
+            document.getElementById("output-title").innerHTML = CIPHER_TEXT;
+            outputTextField.placeholder = ENCRYPTION_PLACEHOLDER_TEXT;
+            break;
+    }
+}
+
+switchButton.addEventListener("click", switchHeaders); 
+
+/* ----------------------------- */
 /*       CLIPBOARD SECTION       */
 /* ----------------------------- */
 // Copy input text to clipboard
 copyInputButton.addEventListener("click", function () {
-    navigator.clipboard.writeText(plainTextField.value);
+    navigator.clipboard.writeText(inputTextField.value);
     tooltips[0].innerText = "Copied!";
     tooltips[0].style.left = "-13px"; // compensate tooltip arrow position from text change above
 });
@@ -85,7 +120,7 @@ copyInputButton.addEventListener("mouseout", function () {
 
 // Copy output text to clipboard
 copyOutputButton.addEventListener("click", function () {
-    navigator.clipboard.writeText(cipherTextField.value);
+    navigator.clipboard.writeText(outputTextField.value);
     tooltips[1].innerText = "Copied!";
     tooltips[1].style.left = "-13px"; // compensate tooltip arrow position from text change above
 });
@@ -106,9 +141,9 @@ function showClearButton() {
     clearButton.style.visibility = "visible";
 }
 
-clearButton.addEventListener("click", function() {
+clearButton.addEventListener("click", function () {
     hideClearButton();
-    plainTextField.value = "";
+    inputTextField.value = "";
     update();
 })
 
@@ -174,9 +209,9 @@ function encyption(shiftDirection, plainText, shift) {
 // Update Cipher Text Output
 /* ----------------------------- */
 function update() {
-    let plainText = plainTextField.value;
+    let plainText = inputTextField.value;
     let newValue = encyption("right", plainText, 1)
-    cipherTextField.value = newValue;
+    outputTextField.value = newValue;
 
     // Show/hide X button
     if (plainText == "") {
@@ -186,14 +221,14 @@ function update() {
     }
 }
 
-plainTextField.addEventListener("input", update);
+inputTextField.addEventListener("input", update);
 
 /* ----------------------------- */
 // Auto-grow Textarea
 /* ----------------------------- */
-plainTextField.addEventListener("input", function () {
-    plainTextField.style.height = "auto";
-    cipherTextField.style.height = "auto";
-    plainTextField.style.height = (plainTextField.scrollHeight) + "px"
-    cipherTextField.style.height = (cipherTextField.scrollHeight) + "px";
+inputTextField.addEventListener("input", function () {
+    inputTextField.style.height = "auto";
+    outputTextField.style.height = "auto";
+    inputTextField.style.height = (inputTextField.scrollHeight) + "px"
+    outputTextField.style.height = (outputTextField.scrollHeight) + "px";
 })

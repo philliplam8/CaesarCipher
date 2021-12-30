@@ -18,66 +18,46 @@
 </head>
 
 <body>
-    <p>[Work in progress] This is a Caesar Cipher shifted to the right by 1. Only encryption works at the moment :)</p>
-
     <div class="conversion">
         <div class="input-text">
             <div class="header-row">
-                <h1>Plain Text</h1>
-                <div class="copy">
-                    <img src="copy-regular.svg" alt="copy-icon" class="copy-icon">
+                <h1 id="input-title">Plain Text</h1>
+                <div class="copy-section">
+                    <img src="assets/copy-regular.svg" alt="copy-icon" class="copy-button">
                     <div class="tooltip">
                         <span class="tooltiptext">Copy</span>
                     </div>
                 </div>
+                <div class="switch-section">
+                    <button id="switch-button">
+                        <img src="assets/arrow-right-arrow-left-solid.svg" alt="switch-order-icon">
+                    </button>
+                </div>
             </div>
             <div class="text-row">
-                <textarea autofocus id="plaintext" placeholder="Enter text"></textarea>
+                <textarea autofocus id="inputtext" placeholder="Enter text"></textarea>
                 <div>
-                    <img src="xmark-solid.svg" alt="clear-text-icon" class="clear-text-icon">
+                    <img src="assets/xmark-solid.svg" alt="clear-text-icon" class="clear-text-icon">
                 </div>
             </div>
 
         </div>
-
         <div class="output-text">
             <div class="header-row">
-                <h1>Cipher Text</h1>
-                <div class="copy">
-                    <img src="copy-regular.svg" alt="copy-icon" class="copy-icon">
+                <h1 id="output-title">Cipher Text</h1>
+                <div class="copy-section">
+                    <img src="assets/copy-regular.svg" alt="copy-icon" class="copy-button">
                     <div class="tooltip">
                         <span class="tooltiptext">Copy</span>
                     </div>
                 </div>
             </div>
             <div class="text-row">
-                <textarea id="ciphertext" placeholder="Encryption" readonly></textarea>
+                <textarea id="ouputtext" placeholder="Encryption" readonly></textarea>
             </div>
         </div>
 
     </div>
-
-    <h3>Things to add</h3>
-    <ul>
-        <li>Functionality</li>
-        <ul>
-            <li>Customize cipher shift direction</li>
-            <li>Customize cipher shift amount</li>
-            <li>Switch between encryption and decryption</li>
-        </ul>
-        <li>Cosmetics</li>
-        <ul>
-            <li>[x] Input text field should have a clear X button on top right</li>
-            <li>Hovering over encryption text should highlight it</li>
-            <li>Character Counter on input textarea</li>
-            <li>On mobile view, decrease font size</li>
-        </ul>
-        <li>Misc.</li>
-        <ul>
-            <li>Introduction on what is a Caesar Cipher</li>
-            <li>Instructions?</li>
-        </ul>
-    </ul>
 </body>
 
 </html>

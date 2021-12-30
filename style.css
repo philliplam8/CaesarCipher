@@ -4,6 +4,39 @@ html {
     height: 100%;
 }
 
+/* Switch button */
+.switch-section {
+    /* align-content: center; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 2;
+}
+
+#switch-button {
+    height: 1.5rem;
+    width: 1.5rem;
+    border: none;
+    background: none;
+    opacity: 0.5;
+    padding: 0px;
+    margin: 0 20px;
+}
+
+#switch-button:hover {
+    -webkit-animation: rotateButton 0.5s;
+    animation: rotateButton 0.5s;
+}
+
+@keyframes rotateButton {
+    from {
+        transform: rotateZ(0deg);
+    } 
+    to {
+        transform: rotateZ(180deg);
+    }
+}
+
 .conversion {
     display: flex;
     flex-wrap: wrap;
@@ -15,11 +48,11 @@ html {
 }
 
 /* Copy Button */
-.copy {
+.copy-section {
     display: flex;
 }
 
-.copy-icon {
+.copy-button {
     margin: 0 10px;
     width: 1.5rem;
     opacity: 0.5;
@@ -83,7 +116,7 @@ textarea {
     overflow: hidden;
     resize: none;
     padding: 10px;
-    min-height: 200px;
+    min-height: 20px;
     width: 90%;
     outline: none;
     /* border: solid 1px #cecece; */

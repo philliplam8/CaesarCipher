@@ -4,3 +4,20 @@
 4. Determine right shift/left shift
 5. Perform encryption/decryption
 6. Convert numbers into letters
+
+Things to add
+
+Functionality
+- Customize cipher shift direction
+- Customize cipher shift amount
+- Switch between encryption and decryption
+
+Cosmetics
+[x] Input text field should have a clear X button on top right
+- Hovering over encryption text should highlight it
+- Character Counter on input textarea
+- On mobile view, decrease font size
+
+Misc.
+Introduction on what is a Caesar Cipher
+Instructions?
