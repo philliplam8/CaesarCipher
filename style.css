@@ -82,7 +82,7 @@ html {
     transition: opacity 0.2s;
 }
 
-.copy:hover .tooltiptext {
+.copy-section:hover .tooltiptext {
     visibility: visible;
 
     /* Fade In Animation */
