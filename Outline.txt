@@ -8,8 +8,8 @@
 Things to add
 
 Functionality
-- Customize cipher shift direction
-- Customize cipher shift amount
+[x] Customize cipher shift direction
+[x] Customize cipher shift amount
 - Switch between encryption and decryption
 
 Cosmetics
@@ -21,3 +21,7 @@ Cosmetics
 Misc.
 Introduction on what is a Caesar Cipher
 Instructions?
+
+
+BUG:
+clear Cipher Key input field generates "undefined" value

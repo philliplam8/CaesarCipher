@@ -15,6 +15,10 @@ const DECRYPTION_PLACEHOLDER_TEXT = "Decryption"
 const inputTextField = document.getElementById("inputtext");
 const outputTextField = document.getElementById("ouputtext");
 
+var cipherKey = document.getElementById("cipher-key");
+const decrementCipher = document.getElementById("decrement-cipher");
+const incrementCipher = document.getElementById("increment-cipher");
+
 /* Cipher Dictionaries
 Keeping O(1) complexity at the cost of slightly more memory */
 var encryptionDict = {
@@ -101,7 +105,7 @@ function switchHeaders() {
     }
 }
 
-switchButton.addEventListener("click", switchHeaders); 
+switchButton.addEventListener("click", switchHeaders);
 
 /* ----------------------------- */
 /*       CLIPBOARD SECTION       */
@@ -160,9 +164,16 @@ function shiftRight(numText, n) {
 }
 
 function shiftLeft(numText, n) {
-    return (numText - n) % 26;
-}
+    let shift = numText - n;
 
+    if (shift >= 0) {
+        return (numText - n) % 26;
+    }
+    else { // less than 0
+        return (numText - n) % 26 + 26;
+    }
+
+}
 
 /* ----------------------------- */
 // Wrapper Function
@@ -171,37 +182,44 @@ function encyption(shiftDirection, plainText, shift) {
 
     let cipherText = "";
 
-    if (shiftDirection == "right") {
-        for (let i = 0; i < plainText.length; i++) {
-
-            // Check if character is an alphabetical character
-            if (isAlphabetical(plainText[i])) {
-
-                // Convert alphabetical letter to uppercase
-                let plainTextUpperCase = plainText[i].toUpperCase();
-                // console.log("plainText ", plainTextUpperCase);
-
-                // Convert letter to number
-                let numText = encryptionDict[plainTextUpperCase];
-                // console.log("plainText to number ", numText);
-
-                // Shift number
-                let shiftedNum = shiftRight(numText, shift)
-                // console.log("shifted number ", shiftedNum);
-
-                // Convert number to letter
-                var newChar = decryptionDict[shiftedNum];
-                // console.log("newchar ", newChar);
-            }
-
-            // Character is not alphabetical character, proceed as is
-            else {
-                var newChar = plainText[i];
-            }
-
-            cipherText = cipherText + newChar;
-        }
+    if (shiftDirection == "default") {
+        // return as is
+        return plainText;
     }
+
+    for (let i = 0; i < plainText.length; i++) {
+
+        // Check if character is an alphabetical character
+        if (isAlphabetical(plainText[i])) {
+
+            // Convert alphabetical letter to uppercase
+            let plainTextUpperCase = plainText[i].toUpperCase();
+
+            // Convert letter to number
+            let numText = encryptionDict[plainTextUpperCase];
+
+            // Shift number
+            let shiftedNum = "";
+
+            if (shiftDirection == "right") {
+                shiftedNum = shiftRight(numText, shift);
+            }
+            else {
+                shiftedNum = shiftLeft(numText, Math.abs(shift));
+            }
+
+            // Convert number to letter
+            var newChar = decryptionDict[shiftedNum];
+        }
+
+        // Character is not alphabetical character, proceed as is
+        else {
+            var newChar = plainText[i];
+        }
+
+        cipherText = cipherText + newChar;
+    }
+
     return cipherText;
 }
 
@@ -209,8 +227,22 @@ function encyption(shiftDirection, plainText, shift) {
 // Update Cipher Text Output
 /* ----------------------------- */
 function update() {
+
+    let latestCipherKey = parseInt(document.getElementById("cipher-key").value);
+    let cipherDirection = "";
+
+    if (latestCipherKey == 0) {
+        cipherDirection = "default";
+    }
+    else if (latestCipherKey > 0) {
+        cipherDirection = "right";
+    }
+    else {
+        cipherDirection = "left";
+    }
+
     let plainText = inputTextField.value;
-    let newValue = encyption("right", plainText, 1)
+    let newValue = encyption(cipherDirection, plainText, latestCipherKey);
     outputTextField.value = newValue;
 
     // Show/hide X button
@@ -232,3 +264,24 @@ inputTextField.addEventListener("input", function () {
     inputTextField.style.height = (inputTextField.scrollHeight) + "px"
     outputTextField.style.height = (outputTextField.scrollHeight) + "px";
 })
+
+/* ----------------------------- */
+// Update Cipher Key
+/* ----------------------------- */
+function increaseCipher() {
+    let intValue = parseInt(cipherKey.value);
+    intValue += 1;
+    cipherKey.value = "" + intValue;
+    update();
+}
+
+function decreaseCipher() {
+    let intValue = parseInt(cipherKey.value);
+    intValue -= 1;
+    cipherKey.value = "" + intValue;
+    update();
+}
+
+cipherKey.addEventListener("input", update);
+decrementCipher.addEventListener("click", decreaseCipher);
+incrementCipher.addEventListener("click", increaseCipher);
