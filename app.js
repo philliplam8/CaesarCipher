@@ -10,8 +10,8 @@ const clearButton = document.getElementsByClassName("clear-text-icon")[0];
 
 const PLAIN_TEXT = "Plain Text";
 const CIPHER_TEXT = "Cipher Text";
-const ENCRYPTION_PLACEHOLDER_TEXT = "Encryption";
-const DECRYPTION_PLACEHOLDER_TEXT = "Decryption"
+const ENCRYPTION_PLACEHOLDER_TEXT = "Encryption result";
+const DECRYPTION_PLACEHOLDER_TEXT = "Decryption result";
 const inputTextField = document.getElementById("inputtext");
 const outputTextField = document.getElementById("ouputtext");
 
